@@ -1,0 +1,1 @@
+DEPS=binaryphile/bash-libs
