@@ -1,42 +1,9 @@
 #!/usr/bin/env bash
-# Usage: setup commands
-# Summary: List all setup commands
-# Help: This command is mostly used for autocompletion in various shells, and for `setup help`.
-# Also, this command helps find commands that are named the same as potentially builtin shell commands (which, cd, etc)
+# Usage: setup git
+# Summary: Install git 2
+# Help: Install the git version control system version 2 on RHEL/CentOS
+# Requires the IUS repository
 
-set -e
+set -o errexit
 
-# Provide setup completions
-if [ "$1" = "--complete" ]; then
-  echo --sh
-  echo --no-sh
-  exit
-fi
-
-if [ "$1" = "--sh" ]; then
-  sh=1
-  shift
-elif [ "$1" = "--no-sh" ]; then
-  nosh=1
-  shift
-fi
-
-shopt -s nullglob
-
-{ for path in ${PATH//:/$'\n'}; do
-    for command in "${path}/setup-"*; do
-      command="${command##*setup-}"
-      if [ -n "$sh" ]; then
-        if [ ${command:0:3} = "sh-" ]; then
-          echo ${command##sh-}
-        fi
-      elif [ -n "$nosh" ]; then
-        if [ ${command:0:3} != "sh-" ]; then
-          echo ${command##sh-}
-        fi
-      else
-        echo ${command##sh-}
-      fi
-    done
-  done
-} | sort | uniq
+sudo yum install -y git2u
