@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Usage: setup rhel6
+# Summary: Switch system-specific commands to RHEL6/CentOS6
+# Help: Switch system-specific commands to RHEL6/CentOS6
+
+set -o errexit
+
+env
