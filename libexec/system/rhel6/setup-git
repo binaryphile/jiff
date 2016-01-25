@@ -4,6 +4,7 @@
 # Help: Install the git version control system version 2 on RHEL/CentOS
 # Requires the IUS repository
 
+source basics
 set -o errexit
 
 sudo yum install -y git2u
