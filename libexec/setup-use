@@ -19,18 +19,18 @@ system="${1}"
 
 case "${system}" in
 "rhel6" )
-  new_dir="${system_dir}/${system}"
-  ln -sfT "${new_dir}" "${link}"
-  for file in ${new_dir}/*; do
+  chosen_dir="${system_dir}/${system}"
+  ln -sfT "${chosen_dir}" "${link}"
+  for file in ${chosen_dir}/*; do
     ln -sf "${file}" "${libexec}/${file##*/}"
   done
   ;;
 "none" )
   system="$(readlink "${link}")"
   system="${system##*/}"
-  new_dir="${system_dir}/${system}"
+  chosen_dir="${system_dir}/${system}"
   rm -f "${link}"
-  for file in ${new_dir}/*; do
+  for file in ${chosen_dir}/*; do
     rm -f "${libexec}/${file##*/}"
   done
   ;;
