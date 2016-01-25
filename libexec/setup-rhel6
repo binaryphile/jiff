@@ -5,4 +5,6 @@
 
 set -o errexit
 
-env
+for file in ${_SETUP_ROOT}/libexec/system/rhel6/*; do
+  ln -sf "${file}" "${_SETUP_ROOT}/libexec/${file##*/}"
+done
