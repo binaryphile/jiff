@@ -35,7 +35,7 @@ case "${system}" in
   done
   ;;
 * )
-  echo "Usage: setup system [rhel6|none]"
+  echo "Usage: setup use [rhel6|none]"
   ;;
 esac
 
