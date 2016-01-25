@@ -37,7 +37,7 @@ case "${system}" in
 * )
   echo "Usage: setup use [rhel6|none]"
   system="$(readlink "${link}")"
-  system="${link##*/}"
+  system="${system##*/}"
   echo "Currently using: ${system}"
   ;;
 esac
