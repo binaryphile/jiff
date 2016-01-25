@@ -1,25 +1,40 @@
 #!/usr/bin/env bash
-# Usage: setup system [rhel6]
-# Summary: Switch system-specific commands to RHEL6/CentOS6
-# Help: Switch system-specific commands to RHEL6/CentOS6
+# Usage: setup system [rhel6|none]
+# Summary: Add system-specific commands from the named system
+# Help: Add system-specific commands from the named system
 
 set -o errexit
 
 # Provide setup completions
-if [ "$1" = "--complete" ]; then
+if [[ "${1}" == "--complete" ]]; then
   echo rhel6
+  echo none
   exit
 fi
 
-system="$1"
-case "$system" in
+libexec="${_SETUP_ROOT}/libexec"
+system_dir="${libexec}/system"
+link="${system_dir}/current"
+system="${1}"
+
+case "${system}" in
 "rhel6" )
+  new_dir="${system_dir}/${system}"
+  ln -sfT "${new_dir}" "${link}"
+  for file in ${new_dir}/*; do
+    ln -sf "${file}" "${libexec}/${file##*/}"
+  done
+  ;;
+"none" )
+  system="$(readlink "${link}")"
+  new_dir="${system_dir}/${system}"
+  rm "${link}"
+  for file in ${new_dir}/*; do
+    rm "${libexec}/${file##*/}"
+  done
   ;;
 * )
-  echo "Usage: setup system [rhel6]"
+  echo "Usage: setup system [rhel6|none]"
   ;;
 esac
 
-for file in ${_SETUP_ROOT}/libexec/system/${system}/*; do
-  ln -sf "${file}" "${_SETUP_ROOT}/libexec/${file##*/}"
-done
