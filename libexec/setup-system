@@ -27,10 +27,11 @@ case "${system}" in
   ;;
 "none" )
   system="$(readlink "${link}")"
+  system="${system##*/}"
   new_dir="${system_dir}/${system}"
-  rm "${link}"
+  rm -f "${link}"
   for file in ${new_dir}/*; do
-    rm "${libexec}/${file##*/}"
+    rm -f "${libexec}/${file##*/}"
   done
   ;;
 * )
