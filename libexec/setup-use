@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup choose [rhel6|none]
+# Usage: setup use [rhel6|none]
 # Summary: Add system-specific commands from the named system
 # Help: Add system-specific commands from the named system
 
