@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Usage: setup system [rhel6]
+# Summary: Switch system-specific commands to RHEL6/CentOS6
+# Help: Switch system-specific commands to RHEL6/CentOS6
+
+set -o errexit
+
+# Provide setup completions
+if [ "$1" = "--complete" ]; then
+  echo rhel6
+  exit
+fi
+
+system="$1"
+case "$system" in
+"rhel6" )
+  ;;
+* )
+  echo "Usage: setup system [rhel6]"
+  ;;
+esac
+
+for file in ${_SETUP_ROOT}/libexec/system/${system}/*; do
+  ln -sf "${file}" "${_SETUP_ROOT}/libexec/${file##*/}"
+done
