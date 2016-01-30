@@ -5,7 +5,7 @@
 # Requires the git2u rpm from the IUS repository to be available
 
 source basics
-source setup-utils
+source rhel6-utils
 
 set -o errexit
 

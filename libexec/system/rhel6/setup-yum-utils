@@ -3,6 +3,9 @@
 # Summary: Install yum utilities
 # Help: Install yum utilities such as yumdownloader on RHEL/CentOS
 
+source rhel6-utils
+
 set -o errexit
 
+package_is_installed yum-utils && exit
 sudo yum install -y yum-utils
