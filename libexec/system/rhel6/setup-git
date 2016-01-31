@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Usage: setup git
 # Summary: Install git 2
-# Help: Install the git version control system version 2 on RHEL/CentOS
-# Requires the git2u rpm from the IUS repository to be available
 
 source basics
-source rhel6-utils
 
-set -o errexit
+use_strict_mode
+exit_if_is_on_path git
 
-sudo yum install -y git2u
+mkdir -p "${HOME}/tmp"
+push_dir "${HOME}/tmp"
+wget https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gz
+pop_dir
