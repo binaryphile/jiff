@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup use [rhel6|none]
+# Usage: setup use [rhel6|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
@@ -27,6 +27,10 @@ case "${system}" in
     make_symlink "${libexec}/${link}" "${file}"
   done
   ;;
+"auto" )
+  os="$(detect_os)"
+  setup "${os}"
+  ;;
 "none" )
   system="$(readlink "${link}")"
   system="$(base_name "${system}")"
@@ -38,7 +42,7 @@ case "${system}" in
   done
   ;;
 * )
-  echo "Usage: setup use [rhel6|none]"
+  echo "Usage: setup use [rhel6|auto|none]"
   [[ -h "${link}" ]] && current="$(readlink "${link}")" && current="${current##*/}"
   [[ -z "${current:-}" ]] && current=none
   echo "Currently using: ${current}"
