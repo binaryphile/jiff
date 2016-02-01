@@ -7,9 +7,12 @@ source basics
 strict_mode_on
 
 # Provide setup completions
-if match "${1}" "--complete"; then
-  echo rhel6
-  echo none
+if match "${1:-}" "--complete"; then
+  cat <<EOM
+rhel6
+auto
+none
+EOM
   exit
 fi
 
@@ -48,4 +51,3 @@ case "${system}" in
   echo "Currently using: ${current}"
   ;;
 esac
-
