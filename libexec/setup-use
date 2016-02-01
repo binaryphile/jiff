@@ -23,7 +23,7 @@ link="${system_dir}/current"
 system="${1:-}"
 
 case "${system}" in
-"rhel6" )
+"rhel6" | "centos" )
   chosen_dir="${system_dir}/${system}"
   make_symlink "${link}" "${chosen_dir}"
   for file in ${chosen_dir}/*; do
@@ -32,8 +32,8 @@ case "${system}" in
   done
   ;;
 "auto" )
-  os="$(detect_os)"
-  setup use "${os}"
+  system="$(detect_os)"
+  setup use "${system}"
   ;;
 "none" )
   system="$(readlink "${link}")"
