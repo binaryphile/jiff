@@ -32,6 +32,7 @@ case "${system}" in
   done
   ;;
 "auto" )
+  exit_if_is_link "${link}"
   system="$(detect_os)"
   setup use "${system}"
   ;;
