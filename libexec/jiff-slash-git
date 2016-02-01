@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup slash-git [admin group (default: prodadm)]
+# Usage: jiff slash-git [admin group (default: prodadm)]
 # Summary: Set up git repository in the root filesystem
 
 source basics
@@ -7,8 +7,8 @@ source basics
 strict_mode_on
 
 exit_if_is_directory /.git
-setup use auto
-setup git
+jiff use auto
+jiff git
 push_dir /
 make_group_dir .git "${1:-}"
 git init

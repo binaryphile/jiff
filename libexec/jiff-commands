@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Usage: setup commands
-# Summary: List all setup commands
-# Help: This command is mostly used for autocompletion in various shells, and for `setup help`.
+# Usage: jiff commands
+# Summary: List all jiff commands
+# Help: This command is mostly used for autocompletion in various shells, and for `jiff help`.
 # Also, this command helps find commands that are named the same as potentially builtin shell commands (which, cd, etc)
 
 set -e
 
-# Provide setup completions
+# Provide jiff completions
 if [ "$1" = "--complete" ]; then
   echo --sh
   echo --no-sh
@@ -24,8 +24,8 @@ fi
 shopt -s nullglob
 
 { for path in ${PATH//:/$'\n'}; do
-    for command in "${path}/setup-"*; do
-      command="${command##*setup-}"
+    for command in "${path}/jiff-"*; do
+      command="${command##*jiff-}"
       if [ -n "$sh" ]; then
         if [ ${command:0:3} = "sh-" ]; then
           echo ${command##sh-}

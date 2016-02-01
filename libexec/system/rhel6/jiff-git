@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup git
+# Usage: jiff git
 # Summary: Install git 2
 
 source basics

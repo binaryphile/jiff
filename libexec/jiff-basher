@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup basher [admin group (default: prodadm)]
+# Usage: jiff basher [admin group (default: prodadm)]
 # Summary: Set up basher package manager
 
 source basics
@@ -7,7 +7,7 @@ source basics
 strict_mode_on
 
 exit_if_is_in_path basher
-setup slash-git
+jiff slash-git
 push_dir /etc/profile.d
 cat <<EOM | sudo tee basher.sh
 if [[ "$(id -u)" -ne 0 ]] && [[ -z "${BASHER_ROOT}" ]]; then

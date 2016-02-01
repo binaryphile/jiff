@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Usage: setup use [rhel6|centos|auto|none]
+# Usage: jiff use [rhel6|centos|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
 
 strict_mode_on
 
-# Provide setup completions
+# Provide jiff completions
 if match "${1:-}" "--complete"; then
   cat <<EOM
 rhel6
@@ -17,7 +17,7 @@ EOM
   exit
 fi
 
-libexec="${_SETUP_ROOT}/libexec"
+libexec="${_JIFF_ROOT}/libexec"
 system_dir="${libexec}/system"
 link="${system_dir}/current"
 system="${1:-}"
@@ -33,7 +33,7 @@ case "${system}" in
 "auto" )
   exit_if_is_link "${link}"
   system="$(detect_os)"
-  setup use "${system}"
+  jiff use "${system}"
   ;;
 "none" )
   for file in ${link}/*; do
@@ -43,7 +43,7 @@ case "${system}" in
   rm -f "${link}"
   ;;
 * )
-  echo "Usage: setup use [rhel6|centos|auto|none]"
+  echo "Usage: jiff use [rhel6|centos|auto|none]"
   [[ -h "${link}" ]] && current="$(readlink "${link}")" && current="${current##*/}"
   [[ -z "${current:-}" ]] && current=none
   echo "Currently using: ${current}"

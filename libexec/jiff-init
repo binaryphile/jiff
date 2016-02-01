@@ -45,28 +45,28 @@ if [ -z "$print" ]; then
     ;;
   esac
 
-  { echo "# Load setup automatically by adding"
+  { echo "# Load jiff automatically by adding"
     echo "# the following to ${profile}:"
     echo
-    echo "eval \"\$(${_SETUP_ROOT}/bin/setup init -)\""
+    echo "eval \"\$(${_JIFF_ROOT}/bin/jiff init -)\""
     echo
   } >&2
 
   exit 1
 fi
 
-echo "export PATH=\"\${PATH}:${_SETUP_ROOT}/bin\""
+echo "export PATH=\"\${PATH}:${_JIFF_ROOT}/bin\""
 
 case "$shell" in
 bash | zsh )
-  echo "source \"$root/completions/setup.${shell}\""
+  echo "source \"$root/completions/jiff.${shell}\""
   ;;
 esac
 
-commands=(`setup commands --sh`)
+commands=(`jiff commands --sh`)
 IFS="|"
 cat <<EOS
-_setup_wrapper() {
+_jiff_wrapper() {
   local command="\$1"
   if [ "\$#" -gt 0 ]; then
     shift
@@ -74,9 +74,9 @@ _setup_wrapper() {
 
   case "\$command" in
   ${commands[*]})
-    eval \`setup "sh-\$command" "\$@"\`;;
+    eval \`jiff "sh-\$command" "\$@"\`;;
   *)
-    command setup "\$command" "\$@";;
+    command jiff "\$command" "\$@";;
   esac
 }
 EOS
@@ -86,9 +86,9 @@ EOS
 # fix both cases here by letting zsh have a function, and bash have its alias.
 case "$shell" in
 bash )
-  echo "alias setup=_setup_wrapper"
+  echo "alias jiff=_jiff_wrapper"
   ;;
 zsh )
-  echo "setup=_setup_wrapper"
+  echo "jiff=_jiff_wrapper"
   ;;
 esac

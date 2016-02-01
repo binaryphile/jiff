@@ -7,7 +7,7 @@ print_summaries() {
   local longest_command=0
   local command
 
-  for command in $(setup-commands); do
+  for command in $(jiff-commands); do
     local file="$(command_path "$command")"
     if [ ! -h "$file" ]; then
       local summary="$(summary "$file")"
@@ -47,7 +47,7 @@ print_help() {
 }
 
 command_path() {
-  command -v "setup-$command" || command -v "setup-sh-$command" || true
+  command -v "jiff-$command" || command -v "jiff-sh-$command" || true
 }
 
 summary() {
@@ -74,20 +74,20 @@ truncate() {
   fi
 }
 
-# Provide setup completions
+# Provide jiff completions
 if [ "$1" = "--complete" ]; then
-  exec "setup-commands"
+  exec "jiff-commands"
   exit
 fi
 
 command="$1"
 case "$command" in
-"") echo "Usage: setup <command> [<args>]
+"") echo "Usage: jiff <command> [<args>]
 
-Some useful setup commands are:
+Some useful jiff commands are:
 $(print_summaries)
 
-See 'setup help <command>' for information on a specific command."
+See 'jiff help <command>' for information on a specific command."
 ;;
 *)
   file="$(command_path "$command")"
@@ -95,7 +95,7 @@ See 'setup help <command>' for information on a specific command."
   if [ -n "$file" ]; then
     print_help "$file"
   else
-    echo "setup: no such command \`$command'" >&2
+    echo "jiff: no such command \`$command'" >&2
     exit 1
   fi
 esac
