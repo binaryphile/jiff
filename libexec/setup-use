@@ -22,7 +22,7 @@ case "${system}" in
 "rhel6" )
   chosen_dir="${system_dir}/${system}"
   make_symlink "${link}" "${chosen_dir}"
-  for file in ${chosen_dir}/setup-*; do
+  for file in ${chosen_dir}/*; do
     link="$(base_name "${file}")"
     make_symlink "${libexec}/${link}" "${file}"
   done
@@ -32,7 +32,7 @@ case "${system}" in
   system="$(base_name "${system}")"
   chosen_dir="${system_dir}/${system}"
   rm -f "${link}"
-  for file in ${chosen_dir}/setup-*; do
+  for file in ${chosen_dir}/*; do
     link="$(base_name "${file}")"
     rm -f "${libexec}/${link}"
   done
