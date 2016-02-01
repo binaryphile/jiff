@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: setup use [rhel6|auto|none]
+# Usage: setup use [rhel6|centos|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
@@ -10,6 +10,7 @@ strict_mode_on
 if match "${1:-}" "--complete"; then
   cat <<EOM
 rhel6
+centos
 auto
 none
 EOM
@@ -32,7 +33,7 @@ case "${system}" in
   ;;
 "auto" )
   os="$(detect_os)"
-  setup "${os}"
+  setup use "${os}"
   ;;
 "none" )
   system="$(readlink "${link}")"
@@ -45,7 +46,7 @@ case "${system}" in
   done
   ;;
 * )
-  echo "Usage: setup use [rhel6|auto|none]"
+  echo "Usage: setup use [rhel6|centos|auto|none]"
   [[ -h "${link}" ]] && current="$(readlink "${link}")" && current="${current##*/}"
   [[ -z "${current:-}" ]] && current=none
   echo "Currently using: ${current}"
