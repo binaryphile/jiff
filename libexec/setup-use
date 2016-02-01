@@ -19,7 +19,7 @@ fi
 libexec="${_SETUP_ROOT}/libexec"
 system_dir="${libexec}/system"
 link="${system_dir}/current"
-system="${1}"
+system="${1:-}"
 
 case "${system}" in
 "rhel6" )
