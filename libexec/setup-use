@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Usage: setup use [rhel6|none]
 # Summary: Add system-specific commands from the named system
-# Help: Add system-specific commands from the named system
 
-set -o errexit
+source basics
+
+strict_mode_on
 
 # Provide setup completions
-if [[ "${1}" == "--complete" ]]; then
+if match "${1}" "--complete"; then
   echo rhel6
   echo none
   exit
@@ -20,18 +21,20 @@ system="${1}"
 case "${system}" in
 "rhel6" )
   chosen_dir="${system_dir}/${system}"
-  ln -sfT "${chosen_dir}" "${link}"
-  for file in ${chosen_dir}/*; do
-    ln -sf "${file}" "${libexec}/${file##*/}"
+  make_symlink "${link}" "${chosen_dir}"
+  for file in ${chosen_dir}/setup-*; do
+    link="$(base_name "${file}")"
+    make_symlink "${libexec}/${link}" "${file}"
   done
   ;;
 "none" )
   system="$(readlink "${link}")"
-  system="${system##*/}"
+  system="$(base_name "${system}")"
   chosen_dir="${system_dir}/${system}"
   rm -f "${link}"
-  for file in ${chosen_dir}/*; do
-    rm -f "${libexec}/${file##*/}"
+  for file in ${chosen_dir}/setup-*; do
+    link="$(base_name "${file}")"
+    rm -f "${libexec}/${link}"
   done
   ;;
 * )
