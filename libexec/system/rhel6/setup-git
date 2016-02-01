@@ -4,7 +4,7 @@
 
 source basics
 
-use_strict_mode
+strict_mode_on
 exit_if_is_on_path git
 
 mkdir -p "${HOME}/tmp"
