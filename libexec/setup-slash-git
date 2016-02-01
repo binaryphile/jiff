@@ -7,6 +7,7 @@ source basics
 strict_mode_on
 
 exit_if_is_directory /.git
+setup use auto
 setup git
 push_dir /
 make_group_dir .git "${1:-}"
