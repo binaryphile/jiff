@@ -24,11 +24,10 @@ system="${1:-}"
 
 case "${system}" in
 "rhel6" | "centos" )
-  chosen_dir="${system_dir}/${system}"
-  make_symlink "${link}" "${chosen_dir}"
-  for file in ${chosen_dir}/*; do
-    link="$(base_name "${file}")"
-    make_symlink "${libexec}/${link}" "${file}"
+  make_symlink "${link}" "${system}"
+  for file in ${link}/*; do
+    nlink="$(base_name "${file}")"
+    make_symlink "${libexec}/${nlink}" "${file}"
   done
   ;;
 "auto" )
@@ -37,14 +36,11 @@ case "${system}" in
   setup use "${system}"
   ;;
 "none" )
-  system="$(readlink "${link}")"
-  system="$(base_name "${system}")"
-  chosen_dir="${system_dir}/${system}"
-  rm -f "${link}"
-  for file in ${chosen_dir}/*; do
-    link="$(base_name "${file}")"
-    rm -f "${libexec}/${link}"
+  for file in ${link}/*; do
+    nlink="$(base_name "${file}")"
+    rm -f "${libexec}/${nlink}"
   done
+  rm -f "${link}"
   ;;
 * )
   echo "Usage: setup use [rhel6|centos|auto|none]"
