@@ -6,7 +6,7 @@
 source basics
 source rhel6-utils
 
-use_strict_mode
+strict_mode_on
 
 exit_if_package_is_installed yum-utils
 yum_install yum-utils
