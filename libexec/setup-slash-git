@@ -1,23 +1,18 @@
 #!/usr/bin/env bash
-# Usage: setup slash-git
+# Usage: setup slash-git [admin group (default: prodadm)]
 # Summary: Set up git repository in the root filesystem
 
 source basics
 
 strict_mode_on
 
-setup git
 exit_if_is_directory /.git
+setup git
 push_dir /
-sudo mkdir .git
-sudo chown "${USER}:${1:-prodadm}" .git
-chmod g+s .git
-setfacl -m g::rwx,d:g::rwx .git
+make_group_dir .git "${1:-}"
 git init
-sudo touch .gitignore
-sudo chown "${USER}:${1:-prodadm}" .gitignore
-chmod g+rw .gitignore
-cat > .gitignore <<EOM
+make_group_file .gitignore "${1:-}"
+cat <<EOM > .gitignore
 *
 id_*
 *.pem
