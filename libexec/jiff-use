@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: jiff use [rhel6|centos|auto|none]
+# Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
@@ -23,7 +23,7 @@ link="${system_dir}/current"
 system="${1:-}"
 
 case "${system}" in
-"rhel6" | "centos" )
+"rhel-6" | "centos-6" | "ubuntu-14.04" )
   make_symlink "${link}" "${system}"
   for file in ${link}/*; do
     nlink="$(base_name "${file}")"
@@ -43,7 +43,7 @@ case "${system}" in
   rm -f "${link}"
   ;;
 * )
-  echo "Usage: jiff use [rhel6|centos|auto|none]"
+  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]"
   [[ -h "${link}" ]] && current="$(readlink "${link}")" && current="${current##*/}"
   [[ -z "${current:-}" ]] && current=none
   echo "Currently using: ${current}"
