@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Usage: jiff install [package]
+# Summary: Install and configure a system package
+
+source basics
+source ubuntu
+
+strict_mode_on
+
+exit_if_package_is_installed "ranger"
+update_apt
+install_package "ranger"

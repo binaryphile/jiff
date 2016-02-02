@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Usage: jiff update-apt
+# Summary: Update apt if it is more than a day old
+
+source ubuntu
+
+strict_mode_on
+
+update_apt
