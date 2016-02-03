@@ -4,7 +4,7 @@
 # Help: Install yum utilities such as yumdownloader on RHEL/CentOS
 
 source basics
-source red
+source platform
 
 strict_mode_on
 

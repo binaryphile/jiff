@@ -3,7 +3,7 @@
 # Summary: Install and configure a system package
 
 source basics
-source ubuntu
+source platform
 
 strict_mode_on
 

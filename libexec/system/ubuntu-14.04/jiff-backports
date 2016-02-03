@@ -3,7 +3,7 @@
 # Summary: Install the backports repository
 
 source basics
-source ubuntu
+source platform
 
 strict_mode_on
 
