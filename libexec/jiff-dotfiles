@@ -6,7 +6,7 @@ source basics
 
 strict_mode_on
 
-exit_if_is_directory "${HOME}/dotfiles"
+#exit_if_is_directory "${HOME}/dotfiles"
 jiff install git
 jiff install ranger
 push_dir "${HOME}"
