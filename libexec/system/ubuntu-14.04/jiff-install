@@ -7,6 +7,20 @@ source ubuntu
 
 strict_mode_on
 
-exit_if_package_is_installed "ranger"
-update_apt
-install_package "ranger"
+install () {
+  local package
+
+  package="${1}"
+  exit_if_package_is_installed "${package}"
+  update_apt
+  install_package "${package}"
+}
+
+case "${1}" in
+"ranger" )
+  install "${package}"
+  ;;
+* )
+  echo "Usage: jiff install [package]"
+  ;;
+esac
