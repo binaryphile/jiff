@@ -10,6 +10,9 @@ strict_mode_on
 package="${1}"
 
 case "${package}" in
+"basher" )
+  jiff "${package}"
+  ;;
 * )
   install_package "${package}"
   ;;

@@ -8,8 +8,8 @@ source platform
 strict_mode_on
 
 #exit_if_is_directory "${HOME}/dotfiles"
-install_package git
-install_package ranger
+jiff install git
+jiff install ranger
 push_dir "${HOME}"
 touch .hushlogin
 #mkdir -pm 700 dotfiles

@@ -3,7 +3,7 @@
 source basics
 
 exit_if_package_is_installed () {
-  ! package_is_installed "${1}" || exit
+  ! package_is_installed "${1}" || exit 0
 }
 
 install_package () {
@@ -16,7 +16,7 @@ install_package () {
 }
 
 package_is_installed () {
-  dpkg --get-selections "${1}" | grep -q "^${1}\\(:amd64\\)\\?[[:space:]]\\+install\$"
+  dpkg --get-selections "${1}" 2>/dev/null | grep -q "^${1}\\(:amd64\\)\\?[[:space:]]\\+install\$" >/dev/null
 }
 
 return_if_package_is_installed () {
