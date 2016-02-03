@@ -6,27 +6,13 @@ exit_if_package_is_installed () {
   ! package_is_installed "${1}" || exit
 }
 
-install_backports () {
-  jiff slash-git
-  ! grep -q backports /etc/apt/sources.list || exit
-  push_dir "/etc/apt"
-  echo "deb http://ubuntu.wikimedia.org/ubuntu trusty-backports main restricted universe multiverse" | sudo tee -a sources.list >/dev/null
-  git add --force sources.list
-  git commit --message "backports"
-  sudo apt-get update -qq
-  ! is_file "preferences" || git add --force preferences && git commit --message "add preferences"
-  cat <<PREFS | sudo tee -a preferences >/dev/null
-Package: *
-Pin: release a=trusty-backports
-Pin-Priority: 100
-PREFS
-  git add --force preferences
-  git commit --message "pin to backports"
-  pop_dir
-}
-
 install_package () {
-  sudo apt-get install -y "${@}"
+  local package
+
+  package="${1}"
+  exit_if_package_is_installed "${package}"
+  update_apt
+  sudo apt-get install -y "${package}"
 }
 
 package_is_installed () {

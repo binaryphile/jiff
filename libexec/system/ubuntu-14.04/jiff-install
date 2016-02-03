@@ -7,20 +7,11 @@ source ubuntu
 
 strict_mode_on
 
-install () {
-  local package
-
-  package="${1}"
-  exit_if_package_is_installed "${package}"
-  update_apt
-  install_package "${package}"
-}
-
 case "${1}" in
-"ranger" )
+"ranger" | "git" )
   install "${package}"
   ;;
 * )
-  echo "Usage: jiff install [package]"
+  echo "Usage: jiff install [ranger|git]"
   ;;
 esac
