@@ -28,7 +28,7 @@ make_links () {
   system="${1}"
 
   make_symlink "${CurrentLink}" "${system}"
-  for file in ${CurrentLink}/*; do
+  for file in ${CurrentLink}/jiff-*; do
     link="$(base_name "${file}")"
     make_symlink "${LibExec}/${link}" "${file}"
   done
@@ -46,7 +46,7 @@ remove_links () {
   local file
   local link
 
-  for file in ${CurrentLink}/*; do
+  for file in ${CurrentLink}/jiff-*; do
     link="$(base_name "${file}")"
     rm -f "${LibExec}/${link}"
   done
