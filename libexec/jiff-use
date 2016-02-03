@@ -17,35 +17,66 @@ EOM
   exit
 fi
 
-libexec="${_JIFF_ROOT}/libexec"
-system_dir="${libexec}/system"
-link="${system_dir}/current"
+LibExec="${_JIFF_ROOT}/libexec"
+CurrentLink="${LibExec}/system/current"
+
+make_links () {
+  local system
+  local file
+  local link
+
+  system="${1}"
+
+  make_symlink "${CurrentLink}" "${system}"
+  for file in ${CurrentLink}/*; do
+    link="$(base_name "${file}")"
+    make_symlink "${LibExec}/${link}" "${file}"
+  done
+}
+
+jiff_auto () {
+  local system
+
+  exit_if_is_link "${CurrentLink}"
+  system="$(detect_os)"
+  jiff use "${system}"
+}
+
+remove_links () {
+  local file
+  local link
+
+  for file in ${CurrentLink}/*; do
+    link="$(base_name "${file}")"
+    rm -f "${LibExec}/${link}"
+  done
+  rm -f "${CurrentLink}"
+}
+
+usage () {
+  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]"
+}
+
+report_current () {
+  is_link "${CurrentLink}" && current="$(readlink "${CurrentLink}")" && current="${current##*/}"
+  is_empty "${current:=}" && current=none
+  echo "Currently using: ${current}"
+}
+
 system="${1:-}"
 
 case "${system}" in
 "rhel-6" | "centos-6" | "ubuntu-14.04" )
-  make_symlink "${link}" "${system}"
-  for file in ${link}/*; do
-    nlink="$(base_name "${file}")"
-    make_symlink "${libexec}/${nlink}" "${file}"
-  done
+  make_links
   ;;
 "auto" )
-  exit_if_is_link "${link}"
-  system="$(detect_os)"
-  jiff use "${system}"
+  jiff_auto
   ;;
 "none" )
-  for file in ${link}/*; do
-    nlink="$(base_name "${file}")"
-    rm -f "${libexec}/${nlink}"
-  done
-  rm -f "${link}"
+  remove_links
   ;;
 * )
-  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]"
-  [[ -h "${link}" ]] && current="$(readlink "${link}")" && current="${current##*/}"
-  [[ -z "${current:-}" ]] && current=none
-  echo "Currently using: ${current}"
+  usage
+  report_current
   ;;
 esac
