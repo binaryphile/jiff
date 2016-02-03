@@ -20,7 +20,7 @@ package_is_installed () {
 }
 
 return_if_package_is_installed () {
-  ! package_is_installed "${1}" || return
+  ! package_is_installed "${1}" || return 0
 }
 
 update_apt () {
