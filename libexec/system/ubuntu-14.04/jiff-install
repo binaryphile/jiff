@@ -7,7 +7,9 @@ source ubuntu
 
 strict_mode_on
 
-case "${1}" in
+package="${1}"
+
+case "${package}" in
 "ranger" | "git" )
   install "${package}"
   ;;
