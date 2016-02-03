@@ -10,17 +10,13 @@ install_package () {
   local package
 
   package="${1}"
-  return_if_package_is_installed "${package}"
+  ! package_is_installed "${package}" || return 0
   update_apt
   sudo apt-get install -y "${package}"
 }
 
 package_is_installed () {
   dpkg --get-selections "${1}" 2>/dev/null | grep -q "^${1}\\(:amd64\\)\\?[[:space:]]\\+install\$" >/dev/null
-}
-
-return_if_package_is_installed () {
-  ! package_is_installed "${1}" || return 0
 }
 
 update_apt () {
