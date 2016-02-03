@@ -11,7 +11,7 @@ package="${1}"
 
 case "${package}" in
 "ranger" | "git" )
-  install "${package}"
+  install_package "${package}"
   ;;
 * )
   echo "Usage: jiff install [ranger|git]"
