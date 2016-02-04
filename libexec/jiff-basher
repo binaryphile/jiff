@@ -10,10 +10,10 @@ exit_if_is_in_path basher
 jiff slash-git
 push_dir /etc/profile.d
 cat <<EOM | sudo tee basher.sh
-if [[ "$(id -u)" -ne 0 ]] && [[ -z "${BASHER_ROOT}" ]]; then
+if [[ "\$(id -u)" -ne 0 ]] && [[ -z "\${BASHER_ROOT}" ]]; then
   export BASHER_ROOT=/opt/basher
-  export PATH="${PATH}:/opt/basher/bin"
-  eval "$(basher init -)"
+  export PATH="\${PATH}:/opt/basher/bin"
+  eval "\$(basher init -)"
 fi
 EOM
 git add --force basher.sh
