@@ -14,5 +14,9 @@ run_if_is_jiff_command () {
   local command
 
   command="${1}"
-  ! is_jiff_command "${command}" || jiff "${command}"
+  if is_jiff_command "${command}"; then
+    jiff "${command}"
+  else
+     return 1
+  fi
 }
