@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Usage: jiff git
+# Summary: Install git 2
+
+source basics
+
+strict_mode_on
+exit_if_is_on_path stg
+
+jiff install git
+mkdir -p "${HOME}/tmp"
+push_dir "${HOME}/tmp"
+git clone git://repo.or.cz/stgit.git
+cd stgit
+make all
+sudo make install
+cd ..
+rm -rf stgit
+pop_dir
