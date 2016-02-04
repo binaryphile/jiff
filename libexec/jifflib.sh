@@ -7,7 +7,10 @@ is_jiff_command () {
 }
 
 run_and_exit_if_is_jiff_command () {
-  ! run_if_is_jiff_command "${1}" || exit 0
+  local command
+
+  command="${1}"
+  ! is_jiff_command "${command}" || exec jiff "${command}"
 }
 
 run_if_is_jiff_command () {
