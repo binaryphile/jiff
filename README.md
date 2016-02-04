@@ -24,3 +24,9 @@ called twice because two parts of the task have the same prereq.
 Prior to using any platform-specific jiff commands, you'll want to run
 "jiff use auto" to set up the links for your distro (ubuntu, centos,
 etc.)
+
+## Built with
+
+This repo was based on [sub].
+
+[sub]: https://github.com/basecamp/sub
