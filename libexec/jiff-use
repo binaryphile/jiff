@@ -58,8 +58,12 @@ usage () {
 }
 
 report_current () {
-  ! is_link "${CurrentLink}" || current="$(readlink "${CurrentLink}")" && current="${current##*/}"
-  ! is_empty "${current:-}" || current=none
+  if is_link "${CurrentLink}"; then
+    current="$(readlink "${CurrentLink}")"
+    current="${current##*/}"
+  else
+    current=none
+  fi
   echo "Currently using: ${current}"
 }
 
