@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]
+# Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
@@ -54,7 +54,7 @@ remove_links () {
 }
 
 usage () {
-  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|auto|none]"
+  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]"
 }
 
 report_current () {
