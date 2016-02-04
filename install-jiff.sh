@@ -15,7 +15,7 @@ eval "\$(basher init -)"
 EOM
 cd .basher/libexec
 sed -i -e 's|${bin_path}:${PATH}|${PATH}:${bin_path}|' basher
-sed -i -e 's|$BASHER_ROOT/cellar/bin:$PATH|$PATH:$BASHER_ROOT/cellar/bin|' basher-init
+sed -i -e 's|$BASHER_ROOT/cellar/bin:$PATH|$PATH:$BASHER_ROOT/cellar/bin|' -e 's|$BASHER_ROOT/cellar/bin $PATH|$PATH $BASHER_ROOT/cellar/bin|' basher-init
 popd >/dev/null
 "${HOME}/.basher/bin/basher" install binaryphile/jiff
 cat <<EOM
