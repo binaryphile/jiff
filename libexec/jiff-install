@@ -3,17 +3,12 @@
 # Summary: Install and configure a system package
 
 source basics
+source jifflib
 source platform
 
 strict_mode_on
 
 package="${1}"
 
-case "${package}" in
-"basher" )
-  jiff "${package}"
-  ;;
-* )
-  install_package "${package}"
-  ;;
-esac
+run_and_exit_if_is_jiff_command "${package}"
+install_package "${package}"
