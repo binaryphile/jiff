@@ -25,8 +25,22 @@ Prior to using any platform-specific jiff commands, you'll want to run
 "jiff use auto" to set up the links for your distro (ubuntu, centos,
 etc.)
 
+## Installation
+
+### Pipethis
+
+Using [pipethis] you can run the installer thusly:
+
+    pipethis https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff.sh
+
+Or, if you're more trusting:
+
+    curl https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff.sh | bash
+
 ## Built with
 
 This repo was based on [sub].
 
+[basher]: https://github.com/basherpm/basher
+[pipethis]: https://github.com/elloteth/pipethis
 [sub]: https://github.com/basecamp/sub
