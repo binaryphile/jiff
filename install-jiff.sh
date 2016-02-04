@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# // ; '' PIPETHIS_AUTHOR Ted Lilley
+
 set -o errexit
 set -o nounset
 set -o pipefail
