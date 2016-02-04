@@ -58,15 +58,15 @@ usage () {
 }
 
 report_current () {
-  is_link "${CurrentLink}" && current="$(readlink "${CurrentLink}")" && current="${current##*/}"
-  is_empty "${current:=}" && current=none
+  ! is_link "${CurrentLink}" || current="$(readlink "${CurrentLink}")" && current="${current##*/}"
+  ! is_empty "${current:-}" || current=none
   echo "Currently using: ${current}"
 }
 
 system="${1:-}"
 
 case "${system}" in
-"rhel-6" | "centos-6" | "ubuntu-14.04" )
+"rhel-6" | "centos-6" | "ubuntu-14.04" | "ubuntu-15.10" )
   make_links "${system}"
   ;;
 "auto" )
