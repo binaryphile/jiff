@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]
+# Usage: jiff use [rhel-6.7|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]
 # Summary: Add system-specific commands from the named system
 
 source basics
@@ -9,8 +9,10 @@ strict_mode_on
 # Provide jiff completions
 if match "${1:-}" "--complete"; then
   cat <<EOM
-rhel6
-centos
+rhel-6.7
+centos-6
+ubuntu-14.04
+ubuntu-15.10
 auto
 none
 EOM
@@ -54,7 +56,7 @@ remove_links () {
 }
 
 usage () {
-  echo "Usage: jiff use [rhel-6|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]"
+  echo "Usage: jiff use [rhel-6.7|centos-6|ubuntu-14.04|ubuntu-15.10|auto|none]"
 }
 
 report_current () {
@@ -70,7 +72,7 @@ report_current () {
 system="${1:-}"
 
 case "${system}" in
-"rhel-6" | "centos-6" | "ubuntu-14.04" | "ubuntu-15.10" )
+"rhel-6.7" | "centos-6" | "ubuntu-14.04" | "ubuntu-15.10" )
   make_links "${system}"
   ;;
 "auto" )
