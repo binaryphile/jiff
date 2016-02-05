@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Usage: jiff git
-# Summary: Install git 2
+# Usage: jiff stgit
+# Summary: Install stacked git
 
 source basics
 
@@ -12,8 +12,8 @@ mkdir -p "${HOME}/tmp"
 push_dir "${HOME}/tmp"
 git clone git://repo.or.cz/stgit.git
 cd stgit
-make all
-sudo make install
+make --prefix=/usr all doc
+sudo make --prefix=/usr install install-doc
 cd ..
 rm -rf stgit
 pop_dir
