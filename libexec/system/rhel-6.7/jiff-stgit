@@ -5,8 +5,8 @@
 source basics
 
 strict_mode_on
-exit_if_is_on_path stg
 
+exit_if_is_on_path stg
 jiff install git
 mkdir -p "${HOME}/tmp"
 push_dir "${HOME}/tmp"
