@@ -12,8 +12,8 @@ mkdir -p "${HOME}/tmp"
 push_dir "${HOME}/tmp"
 git clone git://repo.or.cz/stgit.git
 cd stgit
-make --prefix=/usr all doc
-sudo make --prefix=/usr install install-doc
+make prefix=/usr all doc
+sudo make prefix=/usr install install-doc
 cd ..
 rm -rf stgit
 pop_dir
