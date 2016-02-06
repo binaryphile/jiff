@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Functions specific to jiff but not platform-specific
+
 source basics
 
 is_jiff_command () {

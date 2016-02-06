@@ -2,8 +2,8 @@
 # Usage: jiff dotfiles
 # Summary: Link dotfiles to home directory locations
 
-source basics
-source platform
+source basiclib
+source platformlib
 
 strict_mode_on
 

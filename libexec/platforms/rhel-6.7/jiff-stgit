@@ -2,7 +2,7 @@
 # Usage: jiff stgit
 # Summary: Install stacked git
 
-source basics
+source basiclib
 
 strict_mode_on
 

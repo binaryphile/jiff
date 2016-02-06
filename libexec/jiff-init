@@ -63,7 +63,7 @@ bash | zsh )
   ;;
 esac
 
-commands=(`jiff commands --sh`)
+commands=(`jiff tasks --sh`)
 IFS="|"
 cat <<EOS
 _jiff_wrapper() {

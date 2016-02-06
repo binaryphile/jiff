@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Usage: jiff commands
-# Summary: List all jiff commands
-# Help: This command is mostly used for autocompletion in various shells, and for `jiff help`.
-# Also, this command helps find commands that are named the same as potentially builtin shell commands (which, cd, etc)
+# Usage: jiff tasks
+# Summary: List all jiff tasks
+# Help: This task is mostly used for autocompletion in various shells, and for `jiff help`.
+# Also, this task helps find taks that are named the same as potentially builtin shell commands (which, cd, etc)
 
 set -e
 

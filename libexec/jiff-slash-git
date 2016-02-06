@@ -2,7 +2,7 @@
 # Usage: jiff slash-git [admin group (default: prodadm)]
 # Summary: Set up git repository in the root filesystem
 
-source basics
+source basiclib
 
 strict_mode_on
 

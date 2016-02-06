@@ -2,7 +2,7 @@
 # Usage: jiff use [rhel-6.7|centos-6.5|ubuntu-14.04|ubuntu-15.10|auto|none]
 # Summary: Add system-specific commands from the named system
 
-source basics
+source basiclib
 
 strict_mode_on
 

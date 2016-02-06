@@ -2,8 +2,8 @@
 # Usage: jiff backports
 # Summary: Install the backports repository
 
-source basics
-source platform
+source basiclib
+source platformlib
 
 strict_mode_on
 

@@ -42,7 +42,7 @@ print_help() {
     local help="$(help "$file")"
     [ -n "$help" ] && echo && echo "$help"
   else
-    echo "Sorry, this command isn't documented yet."
+    echo "Sorry, this task isn't documented yet."
   fi
 }
 
@@ -76,18 +76,18 @@ truncate() {
 
 # Provide jiff completions
 if [ "$1" = "--complete" ]; then
-  exec "jiff-commands"
+  exec "jiff-tasks"
   exit
 fi
 
 command="$1"
 case "$command" in
-"") echo "Usage: jiff <command> [<args>]
+"") echo "Usage: jiff <task> [<args>]
 
-Some useful jiff commands are:
+Some useful jiff tasks are:
 $(print_summaries)
 
-See 'jiff help <command>' for information on a specific command."
+See 'jiff help <task>' for information on a specific task."
 ;;
 *)
   file="$(command_path "$command")"
@@ -95,7 +95,7 @@ See 'jiff help <command>' for information on a specific command."
   if [ -n "$file" ]; then
     print_help "$file"
   else
-    echo "jiff: no such command \`$command'" >&2
+    echo "jiff: no such task \`$command'" >&2
     exit 1
   fi
 esac

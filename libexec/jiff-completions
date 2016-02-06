@@ -3,7 +3,7 @@ set -e
 
 COMMAND="$1"
 if [ -z "$COMMAND" ]; then
-  echo "usage: jiff completions COMMAND [arg1 arg2...]" >&2
+  echo "usage: jiff completions TASK [arg1 arg2...]" >&2
   exit 1
 fi
 

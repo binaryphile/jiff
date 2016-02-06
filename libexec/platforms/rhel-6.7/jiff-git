@@ -2,7 +2,7 @@
 # Usage: jiff git
 # Summary: Install git 2
 
-source basics
+source basiclib
 
 strict_mode_on
 
