@@ -1,1 +1,1 @@
-../../jiff-core/lib/jifflib.sh
+../../../binaryphile/jiff-core/lib/jifflib.sh

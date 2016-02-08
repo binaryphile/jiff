@@ -1,1 +1,1 @@
-../../jiff-core/lib/ubuntu-14.04.sh
+../../../binaryphile/jiff-core/lib/ubuntu-14.04.sh

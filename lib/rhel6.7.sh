@@ -1,1 +1,1 @@
-../../jiff-core/lib/rhel6.7.sh
+../../../binaryphile/jiff-core/lib/rhel6.7.sh

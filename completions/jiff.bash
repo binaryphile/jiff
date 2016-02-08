@@ -1,1 +1,1 @@
-../../jiff-core/completions/jiff.bash
+../../../binaryphile/jiff-core/completions/jiff.bash
