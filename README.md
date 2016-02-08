@@ -184,5 +184,5 @@ This repo was based on [sub].
 [chef]: https://www.chef.io/
 [saltstack]: https://saltstack.com/
 [fucking_shell_scripts]: https://github.com/brandonhilkert/fucking_shell_scripts
-[basher]: h[ttps://github.com/basherpm/basher
+[basher]: https://github.com/basherpm/basher
 [sub]: https://github.com/basecamp/sub
