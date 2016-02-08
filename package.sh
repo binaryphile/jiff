@@ -1,1 +1,1 @@
-DEPS=binaryphile/bash-libs
+DEPS=binaryphile/bash-libs:binaryphile/jiff-core

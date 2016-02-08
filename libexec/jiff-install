@@ -1,14 +1,1 @@
-#!/usr/bin/env bash
-# Usage: jiff install [package]
-# Summary: Install and configure a system package
-
-source basiclib
-source jifflib
-source platformlib
-
-strict_mode_on
-
-package="${1}"
-
-run_and_exit_if_is_jiff_command "${package}"
-install_package "${package}"
+../../jiff-core/libexec/jiff-install
