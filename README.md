@@ -63,8 +63,8 @@ Currently only bash installation is supported, but basher has
 instructions for adding it to zsh and fish.  Once basher is installed,
 jiff is available automatically.
 
-See the "jiff-basher" script for system-wide installation (and read it
-before running it).
+See the "libexec/jiff-basher" script for system-wide installation (and
+read it before running it).
 
 ## Usage
 
@@ -96,7 +96,7 @@ enabled a platform with "jiff use" prior to use.
 
 "jiff install" simply wraps the package manager for your platform,
 allowing you to write configuration scripts without having to worry
-about the task syntax differences between platforms.
+about the vagaries of apt and yum syntax.
 
 ### Install a package customized with a specific task implementation
 
@@ -143,9 +143,11 @@ files before messing with them.
    jiff platform --add [platform name]
 
 If you want the "jiff use auto" task to work with your new platform, you
-will need to implement detection in ../bash-libs/lib/basics.sh.
+will need to clone my bash-libs repo and implement your own detection in
+"../bash-libs/lib/basics.sh".
+
 Otherwise you can still tell jiff to use the platform by specifying it
-instead of "auto".
+directly instead of "auto".
 
 ## Bash
 
@@ -174,6 +176,13 @@ etc.)
 
 This repo was based on [sub].
 
-[basher]: https://github.com/basherpm/basher
-[pipethis]: https://github.com/elloteth/pipethis
+[jiff]: https://github.com/binaryphile/jiff
+[git]: https://git-scm.com/
+[rake]: http://docs.seattlerb.org/rake/
+[ansible]: http://www.ansible.com/
+[puppet]: https://puppetlabs.com/
+[chef]: https://www.chef.io/
+[saltstack]: https://saltstack.com/
+[fucking_shell_scripts]: https://github.com/brandonhilkert/fucking_shell_scripts
+[basher]: h[ttps://github.com/basherpm/basher
 [sub]: https://github.com/basecamp/sub
