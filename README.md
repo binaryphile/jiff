@@ -56,8 +56,12 @@ Jiff is the happiest I've been with my attempts thus far.
 
     curl -sL https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff.sh | bash
 
-Along with jiff, this will install [basher] in the user's directory and
-add them both to the path.
+NOTE: you will be prompted to clone this repository to your github
+account!  The script will do this for you, but you will be running your
+own copy of jiff.
+
+Along with your new jiff repo, this will install [basher] in the user's
+home directory and add them both to the path.
 
 Currently only bash installation is supported, but basher has
 instructions for adding it to zsh and fish.  Once basher is installed,
