@@ -60,7 +60,7 @@ Jiff is the happiest I've been with my attempts thus far.
 
 ## Installation
 
-    curl -sL https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff.sh | bash
+    curl -sL https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff | bash
 
 NOTE: there is no sudo in the command above!
 
