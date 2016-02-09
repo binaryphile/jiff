@@ -151,7 +151,7 @@ files before messing with them.
 
 If you want the "jiff use auto" task to work with your new platform, you
 will need to clone my bash-libs repo and implement your own detection in
-"../bash-libs/lib/basics.sh".
+"../bash-libs/lib/commonlib.sh".
 
 Otherwise you can still tell jiff to use the platform by specifying it
 directly instead of "auto".
