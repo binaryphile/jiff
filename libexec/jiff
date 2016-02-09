@@ -20,8 +20,9 @@ abs_dirname() {
 }
 
 libexec_path="$(abs_dirname "$0")"
+lib_path="$(abs_dirname "$libexec_path/../lib")"
 export _JIFF_ROOT="$(abs_dirname "$libexec_path")"
-export PATH="${libexec_path}:$PATH"
+export PATH="${lib_path}:${libexec_path}:$PATH"
 
 command="$1"
 case "$command" in
