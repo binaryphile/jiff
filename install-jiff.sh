@@ -35,4 +35,6 @@ onto your path.  Otherwise follow the basher instructions for loading
 basher into your shell's environment then source those files or
 re-login.
 
+You'll want to run "jiff use auto" to set up platform-specific tasks.
+
 EOM
