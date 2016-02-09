@@ -1,8 +1,8 @@
 ## Jiff
 
 [Jiff] is sort of an automation notebook.  Jiff helps you turn your
-command-line system configuration rituals into simple commands,
-available wherever you need them.
+command-line system configuration rituals into simple tasks, available
+wherever you need them.
 
 ## Motivation
 
