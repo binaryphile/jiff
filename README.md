@@ -113,16 +113,17 @@ about the vagaries of apt and yum syntax.
 
 ### Install a package customized with a specific task implementation
 
-    jiff [your task name which matches the package name]
+    jiff install-[your task name which matches the package name]
 
 or
 
     jiff install [package name]
 
 "jiff install" will first see whether there is a specific jiff task of
-the same name as the package for the current platform.  If so, it will
-run that task instead.  This allows you to customize or override your
-installations specifically on the platforms which require it.
+the same name as the package for the current platform, prefixed with
+"install-".  If so, it will run that task instead.  This allows you to
+customize or override your installations specifically on the platforms
+which require it.
 
 For example, you can install a package via the normal package manager on
 one platform while on another, you use a custom script to install from
@@ -131,33 +132,42 @@ needs it, "jiff install" picks up on that fact and uses the appropriate
 method, without having to use your command-line syntax to tell the
 difference.
 
-### Create a git repo in the root directory
-
-    jiff slash-git
-
-This is an example of a task that is specific to the way I administer my
-systems, using a git repo to version control important configuration
-files before messing with them.
-
 ### Create a new generic jiff task
 
-    jiff task --new [task name]
+    jiff task add [task name]
+
+### Push your task to your jiff repo
+
+    jiff task publish [task name]
 
 ### Create a new platform-specific jiff task (for the current platform)
 
-    jiff task --new --platform [task name]
+    jiff task add --platform [task name]
+
+Note: not yet implemented
 
 ### Create a new platform-specific jiff task (for another platform)
 
-    jiff task --new --platform=[platform name] [task name]
+    jiff task add --platform=[platform name] [task name]
+
+Note: not yet implemented
+
+### Update jiff and its dependencies to the latest version
+
+    jiff update jiff
+
+Note: this is currently hardcoded to my personal jiff repo so it won't
+work for you yet.
 
 ### Add a new platform
 
-   jiff platform --add [platform name]
+   jiff platform add [platform name]
+
+Note: not yet implemented
 
 If you want the "jiff use auto" task to work with your new platform, you
 will need to clone my bash-libs repo and implement your own detection in
-"../bash-libs/lib/commonlib.sh".
+"../bash-libs/lib/stdlib".
 
 Otherwise you can still tell jiff to use the platform by specifying it
 directly instead of "auto".
@@ -184,10 +194,6 @@ twice because two parts of the task have the same prereq.
 Prior to using any platform-specific jiff tasks, you'll want to run
 "jiff use auto" to set up the links for your distro (ubuntu, centos,
 etc.)
-
-## Built with
-
-This repo was based on [sub].
 
 [jiff]: https://github.com/binaryphile/jiff
 [git]: https://git-scm.com/
