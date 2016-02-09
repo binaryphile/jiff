@@ -69,7 +69,7 @@ account!  The script will do this for you, but you will be running your
 own copy of the jiff repo.
 
 Along with your new jiff repo, this will install [basher] in the user's
-home directory and add them both to the path.
+home directory and add both jiff and basher to the path.
 
 Currently only bash installation is supported, but basher has
 instructions for adding it to zsh and fish.  Once basher is installed,
@@ -140,6 +140,13 @@ difference.
 
     jiff task publish [task name]
 
+### Update jiff and its dependencies to the latest version (e.g. to get your new task elsewhere)
+
+    jiff jiff-update
+
+Note: this is currently hardcoded to my personal jiff repo so it won't
+work for you yet.
+
 ### Create a new platform-specific jiff task (for the current platform)
 
     jiff task add --platform [task name]
@@ -151,13 +158,6 @@ Note: not yet implemented
     jiff task add --platform=[platform name] [task name]
 
 Note: not yet implemented
-
-### Update jiff and its dependencies to the latest version
-
-    jiff update jiff
-
-Note: this is currently hardcoded to my personal jiff repo so it won't
-work for you yet.
 
 ### Add a new platform
 
