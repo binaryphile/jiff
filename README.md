@@ -4,6 +4,12 @@
 command-line system configuration rituals into simple tasks, available
 wherever you need them.
 
+## Support
+
+Jiff currently has explicit support for Ubuntu 14, 15, CentOS 6 and Red
+Hat 6, although it will work on any standard unix which supports
+symlinks.
+
 ## Motivation
 
 I build and rebuild a lot of unix machines.  I also deal with multiple
