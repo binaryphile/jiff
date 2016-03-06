@@ -103,6 +103,9 @@ symlinks.
 
 ## Dependencies
 
+Jiff requires a github account and git.  It also requires you to fork
+this repository, which the installer does automatically.
+
 Jiff is implemented in bash, which must be installed on your system.  It
 also requires Python 2.
 
