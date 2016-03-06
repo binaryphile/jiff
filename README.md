@@ -1,8 +1,99 @@
 ## Jiff
 
-[Jiff] is sort of an automation notebook.  Jiff helps you turn your
-command-line system configuration rituals into simple tasks, available
-wherever you need them.
+[Jiff] is an automation notebook.  Jiff helps you turn your command-line
+system configuration rituals into simple tasks, available wherever you
+need them.
+
+Jiff gives you a command, "jiff", which allows you to create subcommands
+called tasks (e.g. "jiff mytask").  Jiff makes it simple to create new
+tasks by providing a basic script template that also pulls in your bash
+history, so you can capture whatever it is you just finished working on.
+
+Jiff tasks are not limited to scripts as they can be any executable,
+although it is tailored for scripting.
+
+If you work on a lot of systems, scripts tends to work fine if you have
+multiple similar machines, but typically won't work when changing
+platform or environment.  For example, scripts written for Red Hat Linux
+won't work on Ubuntu and vice-versa.  Scripts written for servers may
+not work on desktops.
+
+Some systems may use different commands, or call software packages by
+different names.  Others may have constraints like firewalls that don't
+allow access to your usual download sites.
+
+Jiff calls these factors which prevent reusability "contexts".
+
+One way scripts can handle such contextual differences is to add
+complexity.  Logic can be introduced to detect and accommodate the
+differences in environment.  Gradually scripts becomes more general at
+the expense of complexity and maintainability.
+
+Jiff takes a different approach.  Rather than try to make one script to
+rule the different environments, it instead makes it easy to write
+scripts which are only need to worry about one environment.
+
+When you change contexts, moving to a different system, you can
+construct a different script with the same name, a script which embraces
+the assumptions of that environment and doesn't need to be generalized
+at all.  A script which can be a near-verbatim transcript of the steps
+you would do by hand.  That is what enables jiff to make use of your
+shell history when writing your scripts.
+
+By default, jiff stores your scripts in a directory that specifies most
+of the things which might keep it from running elsewhere.  That
+includes:
+
+- a name chosen by you to describe the context, e.g. "work" or "home"
+- the detected OS distribution on which you are running, e.g. "centos-6"
+  or "ubuntu-15"
+- the role that you have on that machine, e.g. "admin" or "user"
+
+You can define contexts with any name you like, and you can also nest
+them with "/", e.g. "work" and "work/vagrant".  You can also define new
+roles, although "admin" and "user" tend to capture most needs.  Jiff
+defaults to the "admin" role since it is mostly meant to be used for
+system administration.
+
+When you install jiff on another system, you only need to configure the
+context name.  If the rest of the environment matches the original one
+(role and distro), then your original jiff tasks become available.
+
+The nice thing is that when you're in a new context, you have carte
+blanche to write a new script for a task of the same name.  Just do what
+you would normally do in the new environment, then capture it as a task.
+This is why I call jiff a notebook, since it basically takes notes on
+what you've done and makes them available as tasks.
+
+As your task library grows, it becomes multiplatform (I would say
+"multicontext") with minimal effort.  By compartmentalizing scripts into
+their own environments, they can embrace their own set of assumptions
+instead of abstracting them away.
+
+The end result is simplicity for you.  For example, on any system I can
+run "jiff install git" and I will get the latest version of git
+installed, independent of:
+
+- whether or not it is in the package repositories
+- the dependencies required to compile it from source
+- whether I have access to the source download site
+- the package management command syntax
+- whether I am a system admin (global install) or a regular user (local
+  install)
+
+Once this is true of all of your tasks, you can start writing system
+configuration scripts built on them.  This allows you to specify your
+configuration in an entirely system-independent manner.  Much like
+Ansible or SaltStack allow you to do, but tailored to the way you
+already do things, in shell, without having to learn how to do it "their
+way".
+
+That's the core idea of jiff, but it has other features to make life
+easier as well.  Jiff allows you to deploy your tasks to other machines
+simply.  It allows you to stay up-to-date with changes in the jiff-core
+project without having to perform git merges, despite being a fork.  And
+it allows you to sensibly build abstraction into your tasks whenever you
+like, without forcing you to do so.
 
 ## Support
 
@@ -10,59 +101,16 @@ Jiff currently has explicit support for Ubuntu 14, 15, CentOS 6 and Red
 Hat 6, although it will work on any standard unix which supports
 symlinks.
 
-## Motivation
+## Dependencies
 
-I build and rebuild a lot of unix machines.  I also deal with multiple
-unix platforms, primarily Red Hat/CentOS and Ubuntu/Debian.
+Jiff is implemented in bash, which must be installed on your system.  It
+also requires Python 2.
 
-In the past I've used tools like plain old shell scripts, [git], [Rake],
-[Ansible], [Puppet], [Chef] or [SaltStack], even
-[fucking_shell_scripts] to handle system configuration tasks.
-
-The biggest problem with most of these is that they don't do enough of
-what I want (shell scripts, git, Rake), or they do way too much
-(everything else).
-
-Most of these tools force you to learn their library of functionality
-first, then to adapt your methods to them.  Ain't nobody got time for
-that.
-
-Instead I want a system that makes it easy for me to capture what I've
-already accomplished and make it easier next time.  I need a tool which
-matches my workflow.
-
-My workflow is probably fairly typical.  I have some piece of software I
-need, usually installable through the system package manager, then I go
-out and find a blog post on how to configure it. Afterwards I make a few
-adaptations of my own.  By the time I'm done, all I have to show for the
-process is my shell history.
-
-I want a tool which is forensically focused, which helps me examine what
-I've done after I've done it then codify that.  Jiff is that tool.
-
-## What It Is
-
-Jiff is a toolkit first and foremost.  It is meant to be personal and
-customized to the user, so it must be built by the user.  While it could
-be thought of as a DWIM (Do What I Mean) system, it's actually a DWYM
-(Do What YOU Mean) system...only you can tell it how to do what you
-want.
-
-In the absence of even a single specific task for it, I still know
-a few things it needs to provide:
-
-- easy deployment - whatever I create, make it available everywhere I
-  need it with a single command (or as few as possible)
-- modular, extensible - new bits should be added in self-contained
-  chunks but presented under a single umbrella
-- true to the cli - as close as possible to how I do things when I'm not
-  using it
-- multi-environment: it has to make administering one environment as
-  close as possible to another
-
-While Jiff is a bit more complex than I'd like, mostly due to managing
-multiple environments, it's the happiest I've been with my attempts thus
-far.
+Jiff supports any shell environment, but requires your initialization
+scripts (bashrc et. al.) to load it onto your path.  The installer does
+this automatically for bash but not the others at the moment.  If you
+use fish, zsh or the like, you will need to follow the [basher]
+instructions for configuring your initialization scripts.
 
 ## Installation
 
@@ -74,12 +122,10 @@ NOTE: you will be prompted to clone this repository to your github
 account!  The script will do this for you, but you will be running your
 own copy of the jiff repo.
 
-Along with your new jiff repo, this will install [basher] in the user's
-home directory, as well as add both jiff and basher to the path.
+Along with creating your new jiff repo, it will install [basher] in the
+user's home directory, as well as add both jiff and basher to the path.
 
-Currently only bash installation is supported, but basher has
-instructions for adding it to zsh and fish.  Once basher is installed,
-jiff is available automatically.
+There currently is no global system installer.
 
 ## Tasks
 
@@ -95,9 +141,90 @@ accessible as a subcommand to jiff, e.g.:
 Jiff will invoke the new task you have created and pass it your
 arguments as if you had run the script directly yourself.
 
-While this is fine, it doesn't buy you much more than some extra typing
-when compared to just writing your own scripts in a directory on your
-path.
+While this is a good start, it's not very useful yet out of the box.
+The rest is up to you.  You'll need to know a little bit about how jiff
+works to make it work for you.
+
+## An Example
+
+I've just installed jiff on my home system.  Since I'm running fish as
+my shell, I've updated my `config.fish` file to put jiff on my path.  I
+re-enter my shell, or source `config.fish`, to make jiff available.
+
+The first thing I do is create a context:
+
+```
+> jiff context add home
+```
+
+and check it with:
+
+```
+> jiff context
+Usage: jiff context CONTEXT|none [rhel-6|centos-6|ubuntu-14|ubuntu-15]
+
+Available contexts:
+
+home
+
+Currently using: home
+```
+
+I could have also run `jiff status`, which tells me my role as well as
+context.  The role task also tells you your role:
+
+```
+> jiff role
+Usage: jiff role ROLE
+
+Available roles:
+
+admin
+user
+
+Currently using: admin
+```
+
+Now let's do some work.  I want to install mysql and my standard
+configuration:
+
+```
+> sudo apt-get install mysql-server >/dev/null
+> curl -sL https://raw.githubusercontent.com/binaryphile/mysql/master/my.cnf | sudo tee /etc/my.cnf
+> sudo service mysql start
+```
+
+Now let's turn this into a task.  Jiff has a convenience syntax for
+installation tasks which we'll take advantage of:
+
+```
+> jiff task add mysql-install
+```
+
+This fires up the editor with the task template and includes the last
+fifty lines of bash history for good measure.  I scrap most of the
+template and leaving the lines above, then save and exit.
+
+Jiff's builtin "install" task looks for any task with the "-install"
+suffix which matches the named package, and executes that.  So the
+following will run the task we just created:
+
+```
+> jiff install mysql
+```
+
+Otherwise, "jiff install [package]" runs the appropriate system package
+manager to install the named package, e.g. `sudo apt-get install -y
+[package]`.
+
+The "-install" naming scheme allows you to override and extend that
+behavior with your own script, as we've just done.
+
+Finally, let's push the new task up to our jiff repo:
+
+```
+jiff task publish mysql-install
+```
 
 ## Contexts
 
