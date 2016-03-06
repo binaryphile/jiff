@@ -119,7 +119,7 @@ User-land install (no sudo necessary):
 
     curl -sL https://raw.githubusercontent.com/binaryphile/jiff/master/install-jiff | bash
 
-NOTE: you will be prompted to clone this repository to your github
+NOTE: you will be prompted to fork this repository to your github
 account!  The script will do this for you, but you will be running your
 own copy of the jiff repo.
 
