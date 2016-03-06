@@ -110,7 +110,8 @@ Jiff supports any shell environment, but requires your initialization
 scripts (bashrc et. al.) to load it onto your path.  The installer does
 this automatically for bash but not the others at the moment.  If you
 use fish, zsh or the like, you will need to follow the [basher]
-instructions for configuring your initialization scripts.
+instructions for configuring your initialization scripts.  Once basher
+is available on your path, jiff is automatically available as well.
 
 ## Installation
 
