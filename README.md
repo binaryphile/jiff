@@ -93,7 +93,7 @@ run "jiff install git" and I will get the latest version of git
 installed, independent of:
 
 - whether or not it is in the package repositories
-- the dependencies required to compile it from source
+- which dependencies are required to compile it from source
 - whether I have access to the source download site
 - the package management command syntax
 - whether I am a system admin (global install) or a regular user (local
