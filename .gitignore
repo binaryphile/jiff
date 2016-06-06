@@ -1,5 +1,5 @@
 /context/current
 /role/current
 /distro/current
-/lib/rolelib
+/lib/role.sh
 /libexec/jiff-*
