@@ -15,7 +15,7 @@ main() {
     exec jiff-help
     ;;
   * )
-    command_path="$(command -v "jiff-$command" || true)"
+    command_path="$(command -v "jiff-$command" || :)"
     if [ ! -x "$command_path" ]; then
       echo "jiff: no such task \`$command'" >&2
       exit 1
@@ -27,6 +27,6 @@ main() {
   esac
 }
 
-return 0 2>/dev/null || true
+return 0 2>/dev/null || :
 sh::strict_mode on
 main "$@"
