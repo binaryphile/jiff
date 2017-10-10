@@ -1,1 +1,1 @@
-../../jiff-core/lib/concorde.bash
+../../../binaryphile/jiff-core/lib/concorde.bash
